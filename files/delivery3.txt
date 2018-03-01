@@ -1,0 +1,1 @@
+{"date":"2018.02.15","fruits":[{"deliveryDate":"2018.01.11","expiration":15,"fruitType":"Peach","price":7.0},{"deliveryDate":"2018.01.12","expiration":120,"fruitType":"Pear","price":5.0},{"deliveryDate":"2018.01.11","expiration":45,"fruitType":"Plum","price":5.0},{"deliveryDate":"2018.01.12","expiration":5,"fruitType":"Strawberry","price":12.0}]}

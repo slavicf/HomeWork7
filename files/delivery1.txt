@@ -1,0 +1,1 @@
+{"date":"2018.02.05","fruits":[{"deliveryDate":"2018.01.01","expiration":100,"fruitType":"Apple","price":5.0},{"deliveryDate":"2018.01.02","expiration":20,"fruitType":"Apricot","price":7.0},{"deliveryDate":"2018.01.03","expiration":30,"fruitType":"Banana","price":2.0}]}
