@@ -1,8 +1,5 @@
 import com.alibaba.fastjson.JSON;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 public class CreateDelivery {
 
     private static Delivery delivery;

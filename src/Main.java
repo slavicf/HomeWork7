@@ -1,5 +1,11 @@
 import com.alibaba.fastjson.JSON;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+
 public class Main {
 
     private static Shop shop = new Shop();
@@ -18,5 +24,23 @@ public class Main {
         shop = new Shop();
         shop.load(path2Shop);
 
+        String dateString = "2015.05.15";
+        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        System.out.println(date.format(DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"))));
+        LocalDate date2 = date.plusDays(30);
+        System.out.println(date2.format(DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("ru"))));
+        System.out.println(date.isAfter(date2));
+        System.out.println(date + ", " + date2);
+
+//        Date date = new Date();
+//        System.out.println(date);
+//        date.;
+//        System.out.println(date);
+
+//        String date_s = " 2011-01-18 00:00:00.0";
+//        SimpleDateFormat dt = new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
+//        Date date = dt.parse();
+//        SimpleDateFormat dt1 = new SimpleDateFormat("yyyyy-mm-dd");
+//        System.out.println(dt1.format(date));
     }
 }
