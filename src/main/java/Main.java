@@ -25,5 +25,11 @@ public class Main {
             System.out.println(fruit);
         }
 
+        ArrayList<Fruit> fruits2 = shop.getAvailableFruits(Time.getDate(date));
+        System.out.println("\nНа " + date + " готовы к продаже:");
+        for (Fruit fruit: fruits2) {
+            System.out.println(fruit);
+        }
+
     }
 }

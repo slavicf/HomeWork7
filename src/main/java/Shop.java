@@ -43,4 +43,21 @@ public class Shop {
         }
         return list;
     }
+
+    public ArrayList<Fruit> getAvailableFruits(LocalDate actualDate) {
+        ArrayList<Fruit> list = new ArrayList<>();
+        int dSize = store.deliveries.size();
+        for (int i = 0; i < dSize; i++){
+            int fSize = store.deliveries.get(i).fruits.size();
+            for (int j = 0; j < fSize; j++){
+                Fruit fruit = store.deliveries.get(i).fruits.get(j);
+                int expiration = fruit.getExpiration();
+                String deliveryDate = fruit.getDeliveryDate();
+                if(!Time.isExpired(deliveryDate, expiration, actualDate)) {
+                    list.add(fruit);
+                }
+            }
+        }
+        return list;
+    }
 }
