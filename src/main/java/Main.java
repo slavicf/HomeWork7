@@ -1,11 +1,11 @@
 
 public class Main {
 
-    public static Shop shop = new Shop();
-    public static String pathDelivery1 = "files/delivery1.txt";
-    public static String pathDelivery2 = "files/delivery2.txt";
-    public static String pathDelivery3 = "files/delivery3.txt";
-    public static String path2Shop = "files/shop.txt";
+    static Shop shop = new Shop();
+    static String pathDelivery1 = "files/delivery1.txt";
+    static String pathDelivery2 = "files/delivery2.txt";
+    static String pathDelivery3 = "files/delivery3.txt";
+    static String path2Shop = "files/shop.txt";
 
     public static void main(String[] args) {
 
