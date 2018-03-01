@@ -8,7 +8,7 @@ import java.util.ListIterator;
 
 public class Shop {
 
-    private Store store = new Store();
+    public Store store = new Store();
 
     public void addFruits(String pathToJsonFile) {          // метод принимает путь к файлу внутри которого находится json с фруктами и датой поставки
         String json = File.read(pathToJsonFile);

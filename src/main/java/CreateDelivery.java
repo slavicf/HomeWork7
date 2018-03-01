@@ -2,15 +2,15 @@ import com.alibaba.fastjson.JSON;
 
 public class CreateDelivery {
 
-    private static Delivery delivery;
+    public static Delivery delivery;
 
-    private static void fileWrite (String date, String path) {
+    public static void fileWrite(String date, String path) {
         delivery.date = date;
         String json = JSON.toJSONString(delivery);
         File.write(path, json);
     }
 
-    static void serializeObject (String path1, String path2, String path3) {
+    public static void serializeObject(String path1, String path2, String path3) {
         delivery = new Delivery();
         delivery.add(new Fruit(FruitType.Apple, 100, "2018.01.01", 5.0));
         delivery.add(new Fruit(FruitType.Apricot, 20, "2018.01.02", 7.0));
