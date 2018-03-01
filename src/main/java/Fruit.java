@@ -12,4 +12,28 @@ public class Fruit {                                        // класс фру
         this.price = price;
     }
 
+    public FruitType getFruitType() {
+        return fruitType;
+    }
+
+    public int getExpiration() {
+        return expiration;
+    }
+
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Fruit{" + fruitType +
+                ", expiration=" + expiration +
+                ", deliveryDate='" + deliveryDate + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

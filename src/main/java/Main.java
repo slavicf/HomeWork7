@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Main {
 
@@ -13,9 +14,16 @@ public class Main {
         shop.addFruits(pathDelivery1);
         shop.addFruits(pathDelivery2);
         shop.addFruits(pathDelivery3);
-        shop.save(path2Shop);
+//        shop.save(path2Shop);
         shop = new Shop();
         shop.load(path2Shop);
+
+        String date = "2018-03-01";
+        ArrayList<Fruit> fruits = shop.getSpoiledFruits(Time.getDate(date));
+        System.out.println("\nНа " + date + " испорчены:");
+        for (Fruit fruit: fruits) {
+            System.out.println(fruit);
+        }
 
     }
 }
