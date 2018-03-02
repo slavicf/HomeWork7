@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSON;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Shop {
 
@@ -27,16 +28,30 @@ public class Shop {
         }
     }
 
-    public ArrayList<Fruit> getSpoiledFruits(LocalDate actualDate) {    // какие продукты испортятся к заданной дате
+    public List<Fruit> getSpoiledFruits(LocalDate actualDate) {    // какие продукты испортятся к заданной дате
         return selection(actualDate, false);
     }
 
-    public ArrayList<Fruit> getAvailableFruits(LocalDate actualDate) {  // готовые к продаже продукты
+    public List<Fruit> getSpoiledFruits(LocalDate actualDate, FruitType fruitType) {    // фильтруeт по заданному типу фрукта
+        List<Fruit> list = getSpoiledFruits(actualDate);
+        Predicate<Fruit> listPredicate = p-> p.getFruitType() != fruitType;
+        list.removeIf(listPredicate);
+        return list;
+    }
+
+    public List<Fruit> getAvailableFruits(LocalDate actualDate) {  // готовы к продаже продукты
         return selection(actualDate, true);
     }
 
-    private ArrayList<Fruit> selection(LocalDate actualDate, boolean good) {
-        ArrayList<Fruit> list = new ArrayList<>();
+    public List<Fruit> getAvailableFruits(LocalDate actualDate, FruitType fruitType) {    // фильтруeт по заданному типу фрукта
+        List<Fruit> list = getAvailableFruits(actualDate);
+        Predicate<Fruit> listPredicate = p-> p.getFruitType() != fruitType;
+        list.removeIf(listPredicate);
+        return list;
+    }
+
+    private List<Fruit> selection(LocalDate actualDate, boolean good) {
+        List<Fruit> list = new ArrayList<>();
         int dSize = store.deliveries.size();
         for (int i = 0; i < dSize; i++){
             int fSize = store.deliveries.get(i).fruits.size();
@@ -44,7 +59,8 @@ public class Shop {
                 Fruit fruit = store.deliveries.get(i).fruits.get(j);
                 int expiration = fruit.getExpiration();
                 String deliveryDate = fruit.getDeliveryDate();
-                if(Time.isExpired(deliveryDate, expiration, actualDate) ^ good) {
+                boolean selected = Time.isExpired(deliveryDate, expiration, actualDate) ^ good;
+                if(selected) {
                     list.add(fruit);
                 }
             }
