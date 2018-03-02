@@ -58,11 +58,34 @@ public class Shop {
             for (int j = 0; j < fSize; j++){
                 Fruit fruit = store.deliveries.get(i).fruits.get(j);
                 int expiration = fruit.getExpiration();
-                String deliveryDate = fruit.getDeliveryDate();
+                LocalDate deliveryDate = Time.getDate(fruit.getDeliveryDate());
                 boolean selected = Time.isExpired(deliveryDate, expiration, actualDate) ^ good;
-                if(selected) {
-                    list.add(fruit);
-                }
+                if(selected) list.add(fruit);
+            }
+        }
+        return list;
+    }
+
+    public List<Fruit> getAddedFruits(LocalDate date) {      // продукты которые были доставлены в заданную дату
+        return delivered(date);
+    }
+
+    public List<Fruit> getAddedFruits(LocalDate actualDate, FruitType fruitType) {
+        List<Fruit> list = getAddedFruits(actualDate);
+        Predicate<Fruit> listPredicate = p-> p.getFruitType() != fruitType;
+        list.removeIf(listPredicate);
+        return list;
+    }
+
+    public List<Fruit> delivered (LocalDate date) {
+        List<Fruit> list = new ArrayList<>();
+        int dSize = store.deliveries.size();
+        for (int i = 0; i < dSize; i++){
+            int fSize = store.deliveries.get(i).fruits.size();
+            for (int j = 0; j < fSize; j++){
+                Fruit fruit = store.deliveries.get(i).fruits.get(j);
+                LocalDate deliveryDate = Time.getDate(fruit.getDeliveryDate());
+                if(deliveryDate.isEqual(date)) list.add(fruit);
             }
         }
         return list;

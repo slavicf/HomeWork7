@@ -11,8 +11,8 @@ public class Time {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
-    public static boolean isExpired (String deliveryDate, int expiration, LocalDate actualDate) {
-        LocalDate expire = getDate(deliveryDate).plusDays(expiration);
+    public static boolean isExpired (LocalDate deliveryDate, int expiration, LocalDate actualDate) {
+        LocalDate expire = deliveryDate.plusDays(expiration);
         return expire.isBefore(actualDate);
     }
 }

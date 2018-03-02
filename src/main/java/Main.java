@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
@@ -8,7 +9,7 @@ public class Main {
     static String pathDelivery3 = "files/delivery3.txt";
     static String path2Shop = "files/shop.txt";
 
-    static void show(List<Fruit> fruits, String date, String message) {
+    static void show(List<Fruit> fruits, LocalDate date, String message) {
         System.out.println("\nНа " + date + message);
         for (Fruit fruit: fruits) {
             System.out.println(fruit);
@@ -25,17 +26,21 @@ public class Main {
         shop = new Shop();
         shop.load(path2Shop);
 
-        String date = "2018-03-01";
-        List<Fruit> fruits= shop.getSpoiledFruits(Time.getDate(date));
+        LocalDate date = Time.getDate("2018-03-01");
+        List<Fruit> fruits = shop.getSpoiledFruits(date);
         show(fruits, date, " испорчены:");
-        fruits= shop.getSpoiledFruits(Time.getDate(date), FruitType.Strawberry);
+        fruits= shop.getSpoiledFruits(date, FruitType.Strawberry);
         show(fruits, date, " испорчены:");
 
-        List<Fruit> fruits2= shop.getAvailableFruits(Time.getDate(date));
-        show(fruits2, date, " готовы к продаже:");
-        fruits2= shop.getAvailableFruits(Time.getDate(date), FruitType.Orange);
-        show(fruits2, date, " готовы к продаже:");
+        fruits = shop.getAvailableFruits(date);
+        show(fruits, date, " готовы к продаже:");
+        fruits= shop.getAvailableFruits(date, FruitType.Orange);
+        show(fruits, date, " готовы к продаже:");
 
-
+        date = Time.getDate("2018-01-11");
+        fruits = shop.getAddedFruits(date);
+        show(fruits, date, " поставлены:");
+        fruits = shop.getAddedFruits(date, FruitType.Peach);
+        show(fruits, date, " поставлены:");
     }
 }
