@@ -27,24 +27,15 @@ public class Shop {
         }
     }
 
-    public ArrayList<Fruit> getSpoiledFruits(LocalDate actualDate) {
-        ArrayList<Fruit> list = new ArrayList<>();
-        int dSize = store.deliveries.size();
-        for (int i = 0; i < dSize; i++){
-            int fSize = store.deliveries.get(i).fruits.size();
-            for (int j = 0; j < fSize; j++){
-                Fruit fruit = store.deliveries.get(i).fruits.get(j);
-                int expiration = fruit.getExpiration();
-                String deliveryDate = fruit.getDeliveryDate();
-                if(Time.isExpired(deliveryDate, expiration, actualDate)) {
-                    list.add(fruit);
-                }
-            }
-        }
-        return list;
+    public ArrayList<Fruit> getSpoiledFruits(LocalDate actualDate) {    // какие продукты испортятся к заданной дате
+        return selection(actualDate, false);
     }
 
-    public ArrayList<Fruit> getAvailableFruits(LocalDate actualDate) {
+    public ArrayList<Fruit> getAvailableFruits(LocalDate actualDate) {  // готовые к продаже продукты
+        return selection(actualDate, true);
+    }
+
+    private ArrayList<Fruit> selection(LocalDate actualDate, boolean good) {
         ArrayList<Fruit> list = new ArrayList<>();
         int dSize = store.deliveries.size();
         for (int i = 0; i < dSize; i++){
@@ -53,7 +44,7 @@ public class Shop {
                 Fruit fruit = store.deliveries.get(i).fruits.get(j);
                 int expiration = fruit.getExpiration();
                 String deliveryDate = fruit.getDeliveryDate();
-                if(!Time.isExpired(deliveryDate, expiration, actualDate)) {
+                if(Time.isExpired(deliveryDate, expiration, actualDate) ^ good) {
                     list.add(fruit);
                 }
             }
